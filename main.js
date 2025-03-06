@@ -1,12 +1,13 @@
 javascript:
 function updateStatistics() {
-const rightQrandomNumber = Math.floor(Math.random() * (250 - 40 + 1)) + 40;
 
-const wrongQrandomNumber = Math.max(40, rightQrandomNumber - Math.floor(Math.random() * (40 - 5 + 1)) - 5);
+const totalQrandomNumber = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
 
+const rightQrandomNumber = Math.floor(Math.random() * (totalQrandomNumber - 20)) + 20;
+  
 const SECrandomNumber = Math.floor(Math.random() * (59 - 0 + 1));
 
-const normalizedQ = (rightQrandomNumber - 40) / (250 - 40);
+const normalizedQ = (totalQrandomNumber - 30) / (70 - 30);
 const minTime = 10;
 const maxTime = 59;
 const time = Math.floor(normalizedQ * (maxTime - minTime + 1)) + minTime;
@@ -29,6 +30,18 @@ const name = nameElement ? nameElement.textContent.trim() : null;
 
 const profilePic = document.querySelector('.user-avatar-container img');
 const profilePicUrl = profilePic ? profilePic.src : null;
+
+let state = null;
+const stateElement = document.querySelector('#ixl-nav-categories > ul.box-site-nav-categories-left.category-menus > li:nth-child(2) > nav > ul > div.grid-item.x-2.y-0 > li > ul > li:nth-child(2) > a');
+const stateText = stateElement ? stateElement.textContent.trim() : null;
+
+if (stateElement) {
+    state = stateElement.textContent.trim();
+}
+
+if (!state && window.RUNTIME_CONTEXT && window.RUNTIME_CONTEXT.sunshine) {
+    state = window.RUNTIME_CONTEXT.sunshine.googleTagManagerConfiguration?.region || null;
+}
 
 document.querySelectorAll('.yui3-js-enabled').forEach(container => {
 container.innerHTML = `
@@ -593,8 +606,8 @@ container.innerHTML = `
                                 
                                   
                                   <li class="subcategory-item">
-                                    <a href="/skill-plans#standards-skill-plans" class="subcategory-item-link category-menu-link category-menu-page-region-standards" data-google-analytics="Main navigation.Link in hover menu clicked.Skill plans - West Virginia state standards" data-cy="category-menu-subcategory-item-link">
-                                      West Virginia state standards
+                                    <a href="/skill-plans#standards-skill-plans" class="subcategory-item-link category-menu-link category-menu-page-region-standards" data-google-analytics="Main navigation.Link in hover menu clicked.Skill plans - ${stateText}" data-cy="category-menu-subcategory-item-link">
+                                      ${stateText}
                                     </a>
                                   </li>
                                 
@@ -805,7 +818,7 @@ container.innerHTML = `
                                 </li>
                               
                                 <li data-cy="hamburger-page-item">
-                                  <a class="link page-hamburger" href="/skill-plans#standards-skill-plans" data-google-analytics="Hamburger menu.Page link clicked.Skill plans - West Virginia state standards"><span class="link-text">West Virginia state standards</span></a>
+                                  <a class="link page-hamburger" href="/skill-plans#standards-skill-plans" data-google-analytics="Hamburger menu.Page link clicked.Skill plans - ${stateText}"><span class="link-text">${stateText}</span></a>
                                 </li>
                               
                                 <li data-cy="hamburger-page-item">
@@ -1016,7 +1029,7 @@ container.innerHTML = `
                 <div class="user-avatar-container js-user-avatar-container custom-user-avatar-container">
                   <img alt="" class="user-avatar js-user-avatar" src="${profilePicUrl}" title="Drag award here" data-draggable="true">
                 </div>
-                <span class="display-name js-display-name">Aden</span>
+                <span class="display-name js-display-name">${name}</span>
               </button>
             
             
@@ -1027,7 +1040,7 @@ container.innerHTML = `
                 <ul class="user-nav-group mobile-layout-only" data-for-dev="display block in mobile layout; a flag in UserNav.js">
                   <li class="user-nav-item current-user">
                     <span class="user-nav-current-user mobile">
-                      Welcome, Aden!
+                      Welcome, ${name}!
                     </span>
                   </li>
                 </ul>
@@ -1169,8 +1182,8 @@ container.innerHTML = `
             </li>
           
             <li class="sub-nav-page" data-cy="subnav-page">
-              <a class="sub-nav-page-link" href="/skill-plans#standards-skill-plans" data-google-analytics="Subnavigation.Link in dropdown clicked.Skill plans - West Virginia state standards">
-                West Virginia state standards
+              <a class="sub-nav-page-link" href="/skill-plans#standards-skill-plans" data-google-analytics="Subnavigation.Link in dropdown clicked.Skill plans - ${stateText}">
+                ${stateText}
               </a>
             </li>
           
@@ -1265,7 +1278,7 @@ container.innerHTML = `
     <script src="/dv3/ON4OXH_9QzrTZ2-imMQLUcRGNfc/yui3/intl/Intl-min.js"></script>
     <script src="/dv3/ON4OXH_9QzrTZ2-imMQLUcRGNfc/yui3/intl/en-US-min.js"></script>
     
-      <main id="practice-page-container"><article class="practice-page us has-mobile-view has-summary"><nav class="breadcrumb-nav site-nav-breadcrumb unzoom practice-breadcrumb responsive"><section class="breadcrumb-content site-nav-breadcrumb-content" data-cy="breadcrumb-content"><a href="/ela/level-c" class="breadcrumb-link breadcrumb-element">${grade}</a><img class="breadcrumb-sep breadcrumb-element" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAASCAMAAABVab95AAAAdVBMVEV/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39drN8cAAAAJ3RSTlMAswEEB4eWBm1bbggCfml4ZnpfhW+IgFZiXokKYWWEaIFrf4J8eXAFIvj3AAAAW0lEQVR4Xj3ORRLFMAwD0CgNNWXGz3D/I3Zhx1q90Wgh5cZScQKajKkDOnGNStxi9my14mOSewziHFORvMBKLdywH6QTlqb6hrshPfBkvfD2pIgvX4j4sZT7J10qIANZobzyMQAAAABJRU5ErkJggg==" alt=""><span data-skill="2020020088" class="suggestion-toggle-icon hidden"></span><div class="breadcrumb-selected"> ${skillCode} <h1 class="breadcrumb-skill-name" data-cy="breadcrumb-skill-name">${skillName}</h1></div><h1 class="grades-landing-permacode">${permacode}</h1></section></nav><section class="summary-container snow-capped-mountain responsive"><div class="summary-body"><aside class="practice-summary-box" aria-hidden="true"><article class="practice-stats-summary" aria-label="practice statistics summary"><section class="time-spent practice-stats-row"><h3 class="hdr-time-spent">Time spent</h3><span class="practice-stats-value">${time} min ${SECrandomNumber} sec</span></section><section class="smart-score practice-stats-row"><h3 class="hdr-smart-score">SmartScore</h3><span class="practice-stats-value">100</span></section><section class="problems-correct practice-stats-row"><h3 class="hdr-problems-correct">Questions correct</h3><span class="practice-stats-value"><a class="lk-problems-correct" href="/analytics/questions-log#skill=2020020088">${wrongQrandomNumber} / ${rightQrandomNumber}</a></span></section></article></aside><section class="mastery-box"><h2 class="mastery-header">Congratulations!</h2><p class="mastery-message">You have mastered the skill and earned a gold medal.</p></section><section class="keep-practice-container"><div class="gold-medal "></div><p class="keep-practice-message">Win more prizes!</p><aside class="dv-keep-practice-lk"><a class="keep-practicing-lk" href="/ela/level-c"><em>Keep practicing</em><span class="continue-symbol">&gt;&gt;</span></a></aside></section></div><div class="dv-bottom-trim"></div></section></article></main>
+      <main id="practice-page-container"><article class="practice-page us has-mobile-view has-summary"><nav class="breadcrumb-nav site-nav-breadcrumb unzoom practice-breadcrumb responsive"><section class="breadcrumb-content site-nav-breadcrumb-content" data-cy="breadcrumb-content"><a href="/ela/level-c" class="breadcrumb-link breadcrumb-element">${grade}</a><img class="breadcrumb-sep breadcrumb-element" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAASCAMAAABVab95AAAAdVBMVEV/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39drN8cAAAAJ3RSTlMAswEEB4eWBm1bbggCfml4ZnpfhW+IgFZiXokKYWWEaIFrf4J8eXAFIvj3AAAAW0lEQVR4Xj3ORRLFMAwD0CgNNWXGz3D/I3Zhx1q90Wgh5cZScQKajKkDOnGNStxi9my14mOSewziHFORvMBKLdywH6QTlqb6hrshPfBkvfD2pIgvX4j4sZT7J10qIANZobzyMQAAAABJRU5ErkJggg==" alt=""><span data-skill="2020020088" class="suggestion-toggle-icon hidden"></span><div class="breadcrumb-selected"> ${skillCode} <h1 class="breadcrumb-skill-name" data-cy="breadcrumb-skill-name">${skillName}</h1></div><h1 class="grades-landing-permacode">${permacode}</h1></section></nav><section class="summary-container snow-capped-mountain responsive"><div class="summary-body"><aside class="practice-summary-box" aria-hidden="true"><article class="practice-stats-summary" aria-label="practice statistics summary"><section class="time-spent practice-stats-row"><h3 class="hdr-time-spent">Time spent</h3><span class="practice-stats-value">${time} min ${SECrandomNumber} sec</span></section><section class="smart-score practice-stats-row"><h3 class="hdr-smart-score">SmartScore</h3><span class="practice-stats-value">100</span></section><section class="problems-correct practice-stats-row"><h3 class="hdr-problems-correct">Questions correct</h3><span class="practice-stats-value"><a class="lk-problems-correct" href="/analytics/questions-log#skill=2020020088">${rightQrandomNumber} / ${totalQrandomNumber}</a></span></section></article></aside><section class="mastery-box"><h2 class="mastery-header">Congratulations!</h2><p class="mastery-message">You have mastered the skill and earned a gold medal.</p></section><section class="keep-practice-container"><div class="gold-medal "></div><p class="keep-practice-message">Win more prizes!</p><aside class="dv-keep-practice-lk"><a class="keep-practicing-lk" href="/ela/level-c"><em>Keep practicing</em><span class="continue-symbol">&gt;&gt;</span></a></aside></section></div><div class="dv-bottom-trim"></div></section></article></main>
       <script>
         var signedIn = true;
         window.__JS_ERROR_TRACKING_CONFIG__ = {"failToReportTolerance":5,"isReportingEnabled":false,"maxDuplicateErrorPerPageLoad":5,"samplingOneOf":100,"sendIntervalMs":1000};;
@@ -1414,7 +1427,7 @@ container.innerHTML = `
       
     
     
-    <script>var rc={"googleAnalyticsConfiguration":{"sessionUserType":"C","shouldSendHits":true,"subscriptionStatus":"A","scriptUrl":"//www.google-analytics.com/analytics.js","gaTrackingId":"UA-18268683-1","userType":"SS"},"googleTagManagerConfiguration":{"gtmAccountId":"GTM-MQKK9F","auth":"rVfbE8en3IxbGbyIWqZqog","preview":"env-36","country":"US","debugId":"5590fa37-3799-4943-85ce-af867215ee95","hashedAccntHeaderId":"null","region":"West Virginia"},"isUserSignedIn":true};if (!window.RUNTIME_CONTEXT) { window.RUNTIME_CONTEXT={}; }window.RUNTIME_CONTEXT.sunshine=rc;</script>
+    <script>var rc={"googleAnalyticsConfiguration":{"sessionUserType":"C","shouldSendHits":true,"subscriptionStatus":"A","scriptUrl":"//www.google-analytics.com/analytics.js","gaTrackingId":"UA-18268683-1","userType":"SS"},"googleTagManagerConfiguration":{"gtmAccountId":"GTM-MQKK9F","auth":"rVfbE8en3IxbGbyIWqZqog","preview":"env-36","country":"US","debugId":"5590fa37-3799-4943-85ce-af867215ee95","hashedAccntHeaderId":"null","region":"${state}"},"isUserSignedIn":true};if (!window.RUNTIME_CONTEXT) { window.RUNTIME_CONTEXT={}; }window.RUNTIME_CONTEXT.sunshine=rc;</script>
     <script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_core-js_modules_es_array_-ee4dff/commons-build_output_build_work_client-js-dependencies_node_modules_core-js_modules_es_array_-ee4dff.9f4aaa6f963d24f701bc.bundle.js"></script><script type="text/javascript" src="/frontend/sunshine/sunshine.0a962561e22b3f8a4a5f.bundle.js"></script>
       <script type="text/javascript" src="/frontend/resources/snow-capped-mountain/snow-capped-mountain_en.972501f00fba4af3cf39.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_core-js_modules_es_array_-ee4dff/commons-build_output_build_work_client-js-dependencies_node_modules_core-js_modules_es_array_-ee4dff.9f4aaa6f963d24f701bc.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_react-dom_index_js/commons-build_output_build_work_client-js-dependencies_node_modules_react-dom_index_js.959289a270fbb7790aa7.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_utils_i18n_index_js/commons-ixl_utils_i18n_index_js.b91833419da2dbb6bb25.bundle.js"></script><script type="text/javascript" src="/frontend/commons-yui3_ixl_content_util_YUA_js/commons-yui3_ixl_content_util_YUA_js.5c5e0c8477d7e422a7f7.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_utils_FetchUtils_js/commons-ixl_utils_FetchUtils_js.e28fcb4f8a4c413d92b3.bundle.js"></script><script type="text/javascript" src="/frontend/commons-yui3_ixl_util-commonjs_ErrorTracking_js/commons-yui3_ixl_util-commonjs_ErrorTracking_js.528c1e4666d391b065be.bundle.js"></script><script type="text/javascript" src="/frontend/commons-yui3_ixl_external_react_prop-types_js/commons-yui3_ixl_external_react_prop-types_js.4ed78ce66029c2b34c04.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_resize-observer-polyfill_-e7d454/commons-build_output_build_work_client-js-dependencies_node_modules_resize-observer-polyfill_-e7d454.21c034ddbd28d188cc21.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_utils_IxlModal_jsx/commons-ixl_utils_IxlModal_jsx.87461a09c0089b82f57a.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_core-js_modules_es_typed--1cab5f/commons-build_output_build_work_client-js-dependencies_node_modules_core-js_modules_es_typed--1cab5f.926036445f550c0be31b.bundle.js"></script><script type="text/javascript" src="/frontend/commons-yui3_ixl_analytics-commonjs_shared_utils_constants_js/commons-yui3_ixl_analytics-commonjs_shared_utils_constants_js.9930b5c6a673b01c3873.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_lodash_lodash_js/commons-build_output_build_work_client-js-dependencies_node_modules_lodash_lodash_js.ae3eab56e81a0697c025.bundle.js"></script><script type="text/javascript" src="/frontend/vendor-build_output_build_work_client-js-dependencies_node_modules_tanstack_query-core_build_-31c7d6/vendor-build_output_build_work_client-js-dependencies_node_modules_tanstack_query-core_build_-31c7d6.bb702608ed06791e8727.bundle.js"></script><script type="text/javascript" src="/frontend/commons-yui3_ixl_analytics-commonjs_shared_utils_UrlBuildingUtils_js/commons-yui3_ixl_analytics-commonjs_shared_utils_UrlBuildingUtils_js.a12a8e1e983a6518b383.bundle.js"></script><script type="text/javascript" src="/frontend/vendor-build_output_build_work_client-js-dependencies_node_modules_tanstack_query-core_build_-16a4e6/vendor-build_output_build_work_client-js-dependencies_node_modules_tanstack_query-core_build_-16a4e6.d32b342e5e939cd9d2ee.bundle.js"></script><script type="text/javascript" src="/frontend/vendor-build_output_build_work_client-js-dependencies_node_modules_aria-hidden_dist_es2015_in-763b06/vendor-build_output_build_work_client-js-dependencies_node_modules_aria-hidden_dist_es2015_in-763b06.81ca4f18c2326dbdec6b.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_redux_lib_index_js/commons-build_output_build_work_client-js-dependencies_node_modules_redux_lib_index_js.18c6a32f7d0aa04813bf.bundle.js"></script><script type="text/javascript" src="/frontend/commons-yui3_ixl_product-components_IxlModal_jsx-ixl_utils_ClassNameUtils_js/commons-yui3_ixl_product-components_IxlModal_jsx-ixl_utils_ClassNameUtils_js.94cac6d99535c6aac0fb.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_utils_videos_KalturaPlayer_jsx/commons-ixl_utils_videos_KalturaPlayer_jsx.6bc899211903cf61ca5a.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_practice_components_views_IndicatorContainer_jsx-ixl_practice_util_UseYUIPractice-3839e0/commons-ixl_practice_components_views_IndicatorContainer_jsx-ixl_practice_util_UseYUIPractice-3839e0.b46c42298ba22e5bfc50.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_radix-ui_react-dialog_dis-75c5cd/commons-build_output_build_work_client-js-dependencies_node_modules_radix-ui_react-dialog_dis-75c5cd.ef8f34f5e3179fa42ca7.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_utils_PlainTooltip_jsx-ixl_utils_crispButton_CrispButton_jsx-ixl_utils_hooks_UseO-ba2055/commons-ixl_utils_PlainTooltip_jsx-ixl_utils_crispButton_CrispButton_jsx-ixl_utils_hooks_UseO-ba2055.54ab8de6f5cb8296488b.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_practice_components_popovers_incompleteAnswerPopover_AudioWrapperGenerationUtils_jsx/commons-ixl_practice_components_popovers_incompleteAnswerPopover_AudioWrapperGenerationUtils_jsx.fca7ee4c0efbf6850e6d.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_practice_components_widgets_Question_jsx-ixl_scratchPad_components_Scratchpad_jsx-c0668a/commons-ixl_practice_components_widgets_Question_jsx-ixl_scratchPad_components_Scratchpad_jsx-c0668a.abb86acccbabe979fee9.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_ixl-node-build_node_modules_buffer_index_js/commons-build_output_build_work_ixl-node-build_node_modules_buffer_index_js.0bed6b297847b7f30ef3.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_header_navigation_quickLoginForm_features_signin_signinSlice_js/commons-ixl_header_navigation_quickLoginForm_features_signin_signinSlice_js.40aeb70042d6ce8f43cb.bundle.js"></script><script type="text/javascript" src="/frontend/commons-build_output_build_work_client-js-dependencies_node_modules_radix-ui_react-tabs_dist_-7df0d2/commons-build_output_build_work_client-js-dependencies_node_modules_radix-ui_react-tabs_dist_-7df0d2.cd34720c13d6995da472.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_practice_components_core_PracticeViewManager_jsx-ixl_practice_components_core_wit-0d482c/commons-ixl_practice_components_core_PracticeViewManager_jsx-ixl_practice_components_core_wit-0d482c.77d993b7eb0818c24e13.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_componentLibrary_atoms_AfterArrowRight_jsx-ixl_componentLibrary_atoms_Image_jsx-i-d6ff6b/commons-ixl_componentLibrary_atoms_AfterArrowRight_jsx-ixl_componentLibrary_atoms_Image_jsx-i-d6ff6b.d2e8bac2cfd058ef27b9.bundle.js"></script><script type="text/javascript" src="/frontend/commons-ixl_practice_index_jsx/commons-ixl_practice_index_jsx.1c1be80078ec77891b7a.bundle.js"></script><script type="text/javascript" src="/frontend/snow-capped-mountain/snow-capped-mountain.b75d73131f5c47b0372c.bundle.js"></script>
     
