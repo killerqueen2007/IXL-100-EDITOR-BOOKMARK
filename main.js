@@ -4,13 +4,10 @@ function updateStatistics() {
 const totalQrandomNumber = Math.floor(Math.random() * (100 - 50 + 1)) + 50;
 
 const rightQrandomNumber = Math.floor(Math.random() * (totalQrandomNumber - 20)) + 20;
-  
-const SECrandomNumber = Math.floor(Math.random() * (59 - 0 + 1));
 
-const normalizedQ = (totalQrandomNumber - 30) / (70 - 30);
-const minTime = 10;
-const maxTime = 59;
-const time = Math.floor(normalizedQ * (maxTime - minTime + 1)) + minTime;
+const time = Math.floor((totalQrandomNumber - 50) * (39 / 50)) + 20;
+
+const SECrandomNumber = Math.floor(Math.random() * (59 - 0 + 1));
 
 const section = document.querySelector('.breadcrumb-content');
 
